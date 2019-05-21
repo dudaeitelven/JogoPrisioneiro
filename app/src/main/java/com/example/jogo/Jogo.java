@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.v4.app.FragmentManager;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -103,6 +104,7 @@ public class Jogo extends View  {
     }
 
     private void mensagem(String title, String message){
+
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
         builder.setTitle(title);
@@ -113,16 +115,12 @@ public class Jogo extends View  {
                     public void onClick(DialogInterface dialog, int id) {
                         System.exit(0);
                     }
-                })
-                /*.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                })*/;
+                });
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
 
     private void updatePrisioneiro() { //atualiza a proxima posição do prisioneiro ao executar o a*
         List<CaminhoHeuristico> caminhoReal = new LinkedList<>();
