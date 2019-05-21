@@ -6,4 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Placar">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonVoltar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonVoltar"
+            tools:layout_editor_absoluteX="161dp"
+            tools:layout_editor_absoluteY="648dp" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

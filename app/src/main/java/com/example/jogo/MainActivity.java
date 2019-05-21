@@ -14,8 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //setContentView(new Jogo(this));
-
         init();
     }
 
@@ -23,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            Intent activityJogo = new Intent(MainActivity.this, Jogo.class);
+            Intent activityJogo = new Intent(MainActivity.this, JogoActivity.class);
             startActivity(activityJogo);
         }
     }
@@ -52,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             finish();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
     }
 
     public void init() {

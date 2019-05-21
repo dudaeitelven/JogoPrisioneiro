@@ -5,4 +5,5 @@
     <string name="buttonPlacar">Placar</string>
     <string name="buttonSobre">Sobre</string>
     <string name="title_activity_sobre">Sobre</string>
+    <string name="buttonVoltar">Voltar</string>
 </resources>

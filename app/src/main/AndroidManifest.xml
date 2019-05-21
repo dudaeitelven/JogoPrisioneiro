@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/prisoner"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Placar"></activity>
+        <activity android:name=".JogoActivity"></activity>
+        <activity android:name=".Placar" />
         <activity android:name=".Sobre" />
         <activity android:name=".MainActivity">
             <intent-filter>
