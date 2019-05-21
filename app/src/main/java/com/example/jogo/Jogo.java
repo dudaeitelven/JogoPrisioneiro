@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -17,7 +16,7 @@ import com.example.jogo.grafo.GrafoListaAdjasencia;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Jogo extends View {
+public class Jogo extends View  {
 
     private int linhas = 11;
     private int colunas = 11; //tamanho do mapa
@@ -152,4 +151,5 @@ public class Jogo extends View {
 
 
     }
+
 }

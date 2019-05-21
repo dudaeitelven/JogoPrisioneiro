@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Jogo</string>
+    <string name="app_name">Prisoner</string>
+    <string name="buttonIniciar">Iniciar</string>
+    <string name="buttonSair">Sair</string>
+    <string name="buttonPlacar">Placar</string>
+    <string name="buttonSobre">Sobre</string>
+    <string name="title_activity_sobre">Sobre</string>
 </resources>
