@@ -10,4 +10,5 @@ public class JogoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(new Jogo(this));
     }
+
 }
