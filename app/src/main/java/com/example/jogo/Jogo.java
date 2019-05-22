@@ -3,6 +3,8 @@ package com.example.jogo;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -19,10 +21,13 @@ import java.util.List;
 
 public class Jogo extends View  {
 
+    private int width;
+    private int height;
+
     private int linhas = 11;
     private int colunas = 11; //tamanho do mapa
 
-    private int size = 95; //tamanho de um quadrado (vertice) no mapa - muda-lo influencia no tamanho interface do jogo (para maior ou para menor)
+    private int size = 0; //tamanho de um quadrado (vertice) no mapa - muda-lo influencia no tamanho interface do jogo (para maior ou para menor)
 
     private int pontos = 426; //indica quantos movimentos ainda pode-se fazer
 
@@ -51,17 +56,21 @@ public class Jogo extends View  {
         gLA.inicializaArestas();
         gLA.inicializaObstaculos();
 
+    }
+
+    @Override
+    public void onDraw(Canvas canvas){
+        width = canvas.getWidth();
+        height = canvas.getHeight();
+
+        size = (width - 40) / linhas;
+
         for (int y = 20, i = 0; y < linhas * size; y += size) {
             for (int x = 20; x < colunas * size; x += size, i++) {
                 grafo[i].setPosX(x);
                 grafo[i].setPosY(y);
             }
         }
-
-    }
-
-    @Override
-    public void onDraw(Canvas canvas){
 
         for(int i = 0; i < VERTICES; i++){
             paint.setStyle(Paint.Style.FILL);
@@ -72,6 +81,19 @@ public class Jogo extends View  {
             paint.setColor(Color.BLACK);
             canvas.drawRect(grafo[i].getPosX(),grafo[i].getPosY(),size+grafo[i].getPosX(),size+grafo[i].getPosY(),paint);
         }
+
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(size);
+        canvas.drawText("Score: " + Integer.toString(pontos) , 20, (size * linhas) + 40 + size, paint);
+
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(size);
+        canvas.drawText("Player: Devil" , 20, (size * linhas) + 40 + size + size, paint);
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.voltar);
+        canvas.drawBitmap(bitmap,((width / 2) - 540),((size * linhas) + 40 + ( size * 3)),null);
 
         if(venceu) {
             mensagem("Atenção", "Vacê venceu!");
