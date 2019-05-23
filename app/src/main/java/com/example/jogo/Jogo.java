@@ -24,7 +24,7 @@ public class Jogo extends View  {
     private int width;
     private int height;
 
-    private int linhas = 11;
+    private int linhas = 11; //teste
     private int colunas = 11; //tamanho do mapa
 
     private int size = 0; //tamanho de um quadrado (vertice) no mapa - muda-lo influencia no tamanho interface do jogo (para maior ou para menor)
