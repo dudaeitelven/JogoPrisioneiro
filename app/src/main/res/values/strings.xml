@@ -6,4 +6,11 @@
     <string name="buttonSobre">Sobre</string>
     <string name="title_activity_sobre">Sobre</string>
     <string name="buttonVoltar">Voltar</string>
+    <string name="textViewNome">Insira seu nome abaixo</string>
+
+    <string-array name="dificuldade_array">
+        <item>Facil</item>
+        <item>Medio</item>
+        <item>Dificil</item>
+    </string-array>
 </resources>
