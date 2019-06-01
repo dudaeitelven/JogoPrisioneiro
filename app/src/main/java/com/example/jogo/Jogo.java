@@ -47,7 +47,6 @@ public class Jogo extends View {
     private Grafo[] grafo = null;
     private GrafoListaAdjasencia gLA = null;
     private Player player;
-    private MediaPlayer mp;
 
     private Paint paint;
 
@@ -88,14 +87,6 @@ public class Jogo extends View {
 
         xVoltar = ((width / 2) - voltarLargura);
         yVoltar = ((size * linhas) + 40 + ( size * 3));
-
-        mp = new MediaPlayer();
-        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.start();
-            }
-        });
 
         for (int y = 20, i = 0; y < linhas * size; y += size) {
             for (int x = 20; x < colunas * size; x += size, i++) {
@@ -202,7 +193,6 @@ public class Jogo extends View {
         alertDialog.show();
     }
 
-
     private void updatePrisioneiro() { //atualiza a proxima posição do prisioneiro ao executar o a*
         List<CaminhoHeuristico> caminhoReal = new LinkedList<>();
         CaminhoHeuristico[] caminho = new CaminhoHeuristico[VERTICES];
@@ -228,7 +218,6 @@ public class Jogo extends View {
             }
 
         }
-
 
     }
 
