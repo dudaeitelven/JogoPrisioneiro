@@ -147,11 +147,11 @@ public class Jogo extends View  {
             if((touchX >= grafo[i].getPosX()) && (touchX < (grafo[i].getPosX() + size)) && (touchY >= grafo[i].getPosY()) && (touchY < (grafo[i].getPosY() + size))){
                 if(!grafo[i].getNome().equals(Color.BLACK) && !grafo[i].getNome().equals(Color.RED)) {
                     gLA.removeVertice(i); //obstaculo
-                    if(player.getDificuldade() == 1){
+                    if(player.getDificuldade() == 0){
                         pontos -= 3;
-                    }else if(player.getDificuldade() == 2){
+                    }else if(player.getDificuldade() == 1){
                         pontos -= 2;
-                    } else{
+                    } else if(player.getDificuldade() == 2){
                         pontos -= 1;
                     }
 
