@@ -3,13 +3,12 @@ package com.example.jogo;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.v4.app.FragmentManager;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,7 +20,7 @@ import com.example.jogo.grafo.GrafoListaAdjasencia;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Jogo extends View  {
+public class Jogo extends View {
 
     private int width;
     private int height;
@@ -47,7 +46,8 @@ public class Jogo extends View  {
     private boolean perdeu = false;
     private Grafo[] grafo = null;
     private GrafoListaAdjasencia gLA = null;
-    Player player;
+    private Player player;
+    private MediaPlayer mp;
 
     private Paint paint;
 
@@ -89,6 +89,14 @@ public class Jogo extends View  {
         xVoltar = ((width / 2) - voltarLargura);
         yVoltar = ((size * linhas) + 40 + ( size * 3));
 
+        mp = new MediaPlayer();
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
+
         for (int y = 20, i = 0; y < linhas * size; y += size) {
             for (int x = 20; x < colunas * size; x += size, i++) {
                 grafo[i].setPosX(x);
@@ -126,11 +134,17 @@ public class Jogo extends View  {
         canvas.drawBitmap(bitmap, xVoltar, yVoltar,null);
 
         if(venceu) {
+
+
             mensagem("Atenção", "Você venceu!");
 
             //Salva os dados do vencedor
         }
         if(perdeu) {
+            perdeu = false;
+            MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.e_um_fracassado);
+            mediaPlayer.start();
+
             mensagem("Atenção", "Você perdeu!");
 
             //Salva os dados do vencedor
