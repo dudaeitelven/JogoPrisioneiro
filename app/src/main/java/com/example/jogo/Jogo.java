@@ -1,5 +1,6 @@
 package com.example.jogo;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -44,6 +45,7 @@ public class Jogo extends View {
 
     private boolean venceu = false;
     private boolean perdeu = false;
+    private boolean endGame = false;
     private Grafo[] grafo = null;
     private GrafoListaAdjasencia gLA = null;
     private Player player;
@@ -132,11 +134,17 @@ public class Jogo extends View {
             //Salva os dados do vencedor
         }
         if(perdeu) {
-            perdeu = false;
-            MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.e_um_fracassado);
+            if(endGame) return;
+            endGame = true;
+
+            //MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.e_um_fracassado);
+            MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.wasted);
             mediaPlayer.start();
 
-            mensagem("Atenção", "Você perdeu!");
+            CustomDalog customDialog = new CustomDalog((Activity) getContext());
+            customDialog.show();
+
+            //mensagem("Atenção", "Você perdeu!");
 
             //Salva os dados do vencedor
         }
@@ -145,6 +153,7 @@ public class Jogo extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if(perdeu || venceu) return false;
         float touchX = event.getX();
         float touchY = event.getY();
 
