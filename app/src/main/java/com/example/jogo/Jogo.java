@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.jogo.JogoDAO.DBAdapter;
 import com.example.jogo.grafo.CaminhoHeuristico;
 import com.example.jogo.grafo.Grafo;
 import com.example.jogo.grafo.GrafoListaAdjasencia;
@@ -82,6 +83,9 @@ public class Jogo extends View {
 
     @Override
     public void onDraw(Canvas canvas){
+        long id;
+        DBAdapter db = new DBAdapter(context);
+
         width = canvas.getWidth();
         height = canvas.getHeight();
 
@@ -128,25 +132,23 @@ public class Jogo extends View {
 
         if(venceu) {
 
-
             mensagem("Atenção", "Você venceu!");
 
-            //Salva os dados do vencedor
+            db.open();
+            id = db.insereJogador(player.getNome(),player.getTempo(),player.getDificuldade(),player.getPontos());
+            db.close();
         }
         if(perdeu) {
             if(endGame) return;
             endGame = true;
 
-            //MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.e_um_fracassado);
-            MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.wasted);
+            MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.e_um_fracassado);
+            //MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.wasted);
             mediaPlayer.start();
 
             CustomDalog customDialog = new CustomDalog((Activity) getContext());
             customDialog.show();
 
-            //mensagem("Atenção", "Você perdeu!");
-
-            //Salva os dados do vencedor
         }
 
     }

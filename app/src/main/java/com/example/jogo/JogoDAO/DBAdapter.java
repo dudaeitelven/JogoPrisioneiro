@@ -57,15 +57,6 @@ public class DBAdapter {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Atualizando a base de dados a partir da versao " + oldVersion
                     + " para " + newVersion + ",isso ira destruir todos os dados antigos");
-            //Os logs permitem ao desenvolvedor debugar erros durante o desenvolvimento e também investigar problemas com o software em produção,
-            // ou seja, com o usuário final (podem ser vistos no LogCat). Para este fim, android tem um classe específica, a classe Log (android.util.Log).
-            // Para criar os log, temos à disposição as funções Log.v(), Log.d(), Log.i(), Log.w(), r Log.e().
-            // DEBUG – logs impressos pela função Log.d()
-            // ERROR – logs impressos pela função Log.e()
-            // INFO – logs impressos pela função Log.i()
-            // VERBOSE – logs impressos pela função Log.v()
-            // WARN – logs impressos pela função Log.w()
-
             db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
             onCreate(db);
         }
@@ -86,16 +77,13 @@ public class DBAdapter {
     //--- insere um Jogador no Ranking ---
     public long insereJogador(String nome, Float tempo, Integer dificuldade, Integer pontos) {
         ContentValues dados = new ContentValues();
+
         dados.put(KEY_NOME, nome);
         dados.put(KEY_TEMPO, tempo);
         dados.put(KEY_DIFICULDADE, dificuldade);
         dados.put(KEY_PONTOS, pontos);
         return db.insert(DATABASE_TABLE, null, dados);
-    }
 
-    //--- limpa o Ranking ---
-    public boolean limpaRanking(long idLinha) {
-        return db.delete(DATABASE_TABLE, null, null) > 0;
     }
 
     //--- retorna os primeiros do ranking ---

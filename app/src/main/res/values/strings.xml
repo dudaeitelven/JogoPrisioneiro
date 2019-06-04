@@ -7,6 +7,7 @@
     <string name="title_activity_sobre">Sobre</string>
     <string name="buttonVoltar">Voltar</string>
     <string name="textViewNome">Insira seu nome abaixo</string>
+    <string name="textViewRanking">Ranking</string>
 
     <string-array name="dificuldade_array">
         <item>Facil</item>
