@@ -89,7 +89,7 @@ public class DBAdapter {
     //--- retorna os primeiros do ranking ---
     public Cursor getRanking() {
         String colunas[] = {KEY_NOME, KEY_TEMPO, KEY_PONTOS, KEY_DIFICULDADE};
-        return db.query(DATABASE_TABLE, colunas, null, null, null, null,KEY_PONTOS,"10");
+        return db.query(DATABASE_TABLE, colunas, null, null, null, null,KEY_PONTOS +" DESC" ,"10");
     }
 
 }

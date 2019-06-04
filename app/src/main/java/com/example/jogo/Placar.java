@@ -4,13 +4,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import com.example.jogo.JogoDAO.DBAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Placar extends AppCompatActivity {
     private Button buttonVoltar;
@@ -47,15 +50,15 @@ public class Placar extends AppCompatActivity {
 
     public void mostraRanking() {
         String nome, descricaoDificuldade="";
-        Integer tempo, pontos, dificuldade;
-
+        Integer pontos, dificuldade;
+        Long tempo;
         db.open();
         cursor = db.getRanking();
 
         if (cursor.moveToFirst() == true) {
             do {
                 nome = cursor.getString(0);
-                tempo = cursor.getInt(1);
+                tempo = cursor.getLong(1);
                 pontos = cursor.getInt(2);
                 dificuldade = cursor.getInt(3);
 
@@ -69,7 +72,10 @@ public class Placar extends AppCompatActivity {
                     descricaoDificuldade = "Facil";
                 }
 
-                ranking.add( "Nome: " + nome + " \nTempo: " + tempo + " \nPontos: " + pontos + " \nDificuldade: " + descricaoDificuldade);
+                Date dat = new Date(tempo);
+                SimpleDateFormat sdf = new SimpleDateFormat("mm:ss");
+
+                ranking.add( "Nome: " + nome + " \nTempo: " + sdf.format(dat) + " \nPontos: " + pontos + " \nDificuldade: " + descricaoDificuldade);
                 listaderanking.notifyDataSetChanged();
             } while (cursor.moveToNext());
         }

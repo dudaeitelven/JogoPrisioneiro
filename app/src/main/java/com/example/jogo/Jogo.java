@@ -136,9 +136,10 @@ public class Jogo extends View {
             endGame = true;
 
             player.setTempo(System.currentTimeMillis() - tempoInicio);
+            player.setPontos(pontos);
 
             db.open();
-            db.insereJogador((player.getNome().equals("") ? "Anonimo" : player.getNome()),player.getTempo(),pontos,player.getDificuldade());
+            db.insereJogador((player.getNome().equals("") ? "Anonimo" : player.getNome()),player.getTempo(),player.getPontos(),player.getDificuldade());
             db.close();
 
             MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.winner);
