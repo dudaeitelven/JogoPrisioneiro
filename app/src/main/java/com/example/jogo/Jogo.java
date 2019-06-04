@@ -37,16 +37,16 @@ public class Jogo extends View {
     private int colunas = 11; //tamanho do mapa
 
     private int size = 0; //tamanho de um quadrado (vertice) no mapa - muda-lo influencia no tamanho interface do jogo (para maior ou para menor)
-
     private int pontos = 121; //indica quantos movimentos ainda pode-se fazer
-
     private int VERTICES = linhas * colunas; //total de vertices
-
     private int posicaoPrisioneiro = (linhas / 2) * linhas + (colunas / 2); //posição inicial do prisioneiro
 
     private boolean venceu = false;
     private boolean perdeu = false;
     private boolean endGame = false;
+
+    private long tempoInicio;
+
     private Grafo[] grafo = null;
     private GrafoListaAdjasencia gLA = null;
     private Player player;
@@ -79,6 +79,8 @@ public class Jogo extends View {
             gLA.inicializaObstaculos(25);
             pontos -= 25;
         }
+
+        tempoInicio = System.currentTimeMillis();
     }
 
     @Override
@@ -130,6 +132,13 @@ public class Jogo extends View {
         canvas.drawBitmap(bitmap, xVoltar, yVoltar,null);
 
         if(venceu) {
+            if(endGame) return;
+            endGame = true;
+
+            player.setTempo(System.currentTimeMillis() - tempoInicio);
+
+            mensagem("Atenção", "Você venceu!");
+
             db.open();
             db.insereJogador((player.getNome().equals("") ? "Anonimo" : player.getNome()),player.getTempo(),pontos,player.getDificuldade());
             db.close();
