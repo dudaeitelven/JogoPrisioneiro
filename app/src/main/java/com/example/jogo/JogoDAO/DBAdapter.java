@@ -75,21 +75,21 @@ public class DBAdapter {
     }
 
     //--- insere um Jogador no Ranking ---
-    public long insereJogador(String nome, Float tempo, Integer dificuldade, Integer pontos) {
+    public long insereJogador(String nome, Float tempo, Integer pontos,Integer dificuldade) {
         ContentValues dados = new ContentValues();
 
         dados.put(KEY_NOME, nome);
         dados.put(KEY_TEMPO, tempo);
-        dados.put(KEY_DIFICULDADE, dificuldade);
         dados.put(KEY_PONTOS, pontos);
+        dados.put(KEY_DIFICULDADE, dificuldade);
         return db.insert(DATABASE_TABLE, null, dados);
 
     }
 
     //--- retorna os primeiros do ranking ---
     public Cursor getRanking() {
-        String colunas[] = {KEY_NOME, KEY_TEMPO, KEY_DIFICULDADE, KEY_PONTOS};
-        return db.query(DATABASE_TABLE, colunas, null, null, null, null, KEY_PONTOS);
+        String colunas[] = {KEY_NOME, KEY_TEMPO, KEY_PONTOS, KEY_DIFICULDADE};
+        return db.query(DATABASE_TABLE, colunas, null, null, null, null,KEY_PONTOS,"10");
     }
 
 }
