@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/prisoner"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomDalog"></activity>
+        <activity android:name=".WinActivity"></activity>
+        <activity android:name=".CustomDalog" />
         <activity android:name=".JogoActivity" />
         <activity android:name=".Placar" />
         <activity android:name=".Sobre" />

@@ -34,10 +34,6 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_weight="0.01" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -148,10 +144,18 @@
                 android:text="          - Dificil" />
         </LinearLayout>
 
-        <Space
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_weight="1" />
+            android:layout_height="wrap_content"
+            android:layout_weight=".1"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -168,7 +172,9 @@
                 android:text="@string/buttonVoltar"
                 tools:layout_editor_absoluteX="161dp"
                 tools:layout_editor_absoluteY="648dp" />
+
         </LinearLayout>
 
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

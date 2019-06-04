@@ -83,7 +83,6 @@ public class Jogo extends View {
 
     @Override
     public void onDraw(Canvas canvas){
-        long id;
         DBAdapter db = new DBAdapter(context);
 
         width = canvas.getWidth();
@@ -131,12 +130,16 @@ public class Jogo extends View {
         canvas.drawBitmap(bitmap, xVoltar, yVoltar,null);
 
         if(venceu) {
-
-            mensagem("Atenção", "Você venceu!");
-
             db.open();
-            id = db.insereJogador(player.getNome(),player.getTempo(),player.getDificuldade(),player.getPontos());
+            db.insereJogador((player.getNome().equals("") ? "Anonimo" : player.getNome()),player.getTempo(),pontos,player.getDificuldade());
             db.close();
+
+            MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.winner);
+            mediaPlayer.start();
+
+            WinActivity winActivity = new WinActivity((Activity) getContext());
+            winActivity.show();
+
         }
         if(perdeu) {
             if(endGame) return;

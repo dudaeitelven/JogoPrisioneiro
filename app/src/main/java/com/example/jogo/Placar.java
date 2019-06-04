@@ -46,18 +46,35 @@ public class Placar extends AppCompatActivity {
     }
 
     public void mostraRanking() {
+        String nome, descricaoDificuldade="";
+        Integer tempo, pontos, dificuldade;
 
         db.open();
         cursor = db.getRanking();
 
         if (cursor.moveToFirst() == true) {
             do {
-                ranking.add( "Nome: " + cursor.getString(0) + " Pontos: " + cursor.getString(2) + " Dificuldade: " + cursor.getString(3));
+                nome = cursor.getString(0);
+                tempo = cursor.getInt(1);
+                pontos = cursor.getInt(2);
+                dificuldade = cursor.getInt(3);
+
+                if (dificuldade == 2){
+                    descricaoDificuldade = "Dificil";
+                }
+                if (dificuldade == 1){
+                    descricaoDificuldade = "Medio";
+                }
+                if (dificuldade == 0){
+                    descricaoDificuldade = "Facil";
+                }
+
+                ranking.add( "Nome: " + nome + " \nTempo: " + tempo + " \nPontos: " + pontos + " \nDificuldade: " + descricaoDificuldade);
                 listaderanking.notifyDataSetChanged();
             } while (cursor.moveToNext());
         }
-        db.close();
 
+        db.close();
     }
 
     public void init() {

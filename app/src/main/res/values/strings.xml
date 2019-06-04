@@ -14,4 +14,5 @@
         <item>Medio</item>
         <item>Dificil</item>
     </string-array>
+    <string name="title_activity_win">WinActivity</string>
 </resources>
