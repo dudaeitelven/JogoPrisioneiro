@@ -137,8 +137,6 @@ public class Jogo extends View {
 
             player.setTempo(System.currentTimeMillis() - tempoInicio);
 
-            mensagem("Atenção", "Você venceu!");
-
             db.open();
             db.insereJogador((player.getNome().equals("") ? "Anonimo" : player.getNome()),player.getTempo(),pontos,player.getDificuldade());
             db.close();
